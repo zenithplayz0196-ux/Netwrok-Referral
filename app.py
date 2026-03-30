@@ -8,8 +8,11 @@ Original file is located at
 """
 
 #Python lab For Analysis Visualiazation
+import streamlit as st
 import networkx as nx
 import matplotlib.pyplot as plt
+
+st.title("Hospital Referral Network Model")
 
 G = nx.DiGraph()
 
@@ -17,7 +20,11 @@ G = nx.DiGraph()
 G.add_edge("DRA", "DRB")
 G.add_edge("DRA", "DRC")
 G.add_edge("DRB", "DRC")
-nx.draw(G, with_labels=True)
-print("Centrality:")
-print(nx.degree_centrality(G))
-plt.show()
+
+st.subheader("Centrality")
+st.write(nx.degree_centrality(G))
+
+st.subheader("Graph")
+fig, ax = plt.subplots()
+nx.draw(G, with_labels=True, ax=ax)
+st.pyplot(fig)
